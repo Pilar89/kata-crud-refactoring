@@ -14,7 +14,7 @@ public class TodoController {
     public Iterable<Todo> list(){
         return service.list();
     }
-    
+
     @PostMapping(value = "api/todo")
     public Todo save(@RequestBody Todo todo){
         return service.save(todo);
