@@ -12,7 +12,7 @@ const InsertTodoList = () => {
   const [state, setState] = useState(item);
 
   return (
-    <form ref={formRef}>
+    <form ref={formRef} className="container mt-3">
       <input
         type="text"
         name="name"

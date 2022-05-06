@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { onChange, onDelete, onEdits } from "../controller/controllerToDos";
+import { onChange, onDelete, onEdit } from "../controller/controllerToDos";
 import { Store } from "../state/state";
 
 const ToDos = ({ idList }) => {
@@ -15,7 +15,7 @@ const ToDos = ({ idList }) => {
 
   return (
     <div>
-      <table>
+      <table className="table table-striped text-center">
         <thead>
           <tr>
             <td>ID</td>
@@ -39,12 +39,18 @@ const ToDos = ({ idList }) => {
                   </td>
 
                   <td>
-                    <button onClick={() => onDelete(item.id, dispatch)}>
+                    <button
+                      onClick={() => onDelete(item.id, dispatch)}
+                      className="btn btn-secondary"
+                    >
                       Eliminar
                     </button>
                   </td>
                   <td>
-                    <button onClick={() => onEdit(item, dispatch)}>
+                    <button
+                      onClick={() => onEdit(item, dispatch)}
+                      className="btn btn-dark"
+                    >
                       Editar
                     </button>
                   </td>

@@ -9,7 +9,7 @@ export const onAdd = async (state, dispatch, idList) => {
     completed: false,
     list_id: state.list_id,
   };
-  console.log("idList " + idList);
+  console.log("state " + state.name);
 
   const response = await fetch(HOST_API + "/" + `${idList}` + "/todo", {
     method: "POST",

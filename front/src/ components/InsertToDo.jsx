@@ -22,6 +22,9 @@ const InsertToDo = ({ idList }) => {
           defaultValue={item.name}
           onChange={(event) => {
             setState({ ...state, name: event.target.value });
+            if (event.target.value !== "" || event.target.value !== null) {
+              setIsEmpty(false);
+            }
           }}
         ></input>
         {item.id && (
