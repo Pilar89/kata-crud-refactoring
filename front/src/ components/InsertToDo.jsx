@@ -1,9 +1,9 @@
 import React, { useContext, useRef, useState } from "react";
-import { onAdd } from "../controller/controllerForm";
-import { onEdit } from "../controller/controllerForm";
-import { Store } from "../state/State";
+import { onAdd } from "../controller/controllerInsertToDo";
+import { onEdit } from "../controller/controllerInsertToDo";
+import { Store } from "../state/state";
 
-const Form = () => {
+const InsertToDo = ({ idList }) => {
   const formRef = useRef(null);
   const {
     dispatch,
@@ -43,7 +43,7 @@ const Form = () => {
             onClick={async (event) => {
               event.preventDefault();
 
-              await onAdd(state, dispatch, item);
+              await onAdd(state, dispatch, idList);
 
               setState({ name: "" });
               formRef.current.reset();
@@ -57,4 +57,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default InsertToDo;

@@ -1,5 +1,9 @@
 package co.com.sofka.crud.models;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +18,7 @@ public class Todo {
 
   @ManyToOne(optional = false)
   @JoinColumn(name = "list_id", nullable = false)
+  @OnDelete(action = OnDeleteAction.CASCADE)
   private TodoList list;
 
   public Long getId() {

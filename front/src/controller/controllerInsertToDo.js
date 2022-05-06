@@ -2,20 +2,23 @@ import { HOST_API } from "../const";
 
 //funciones llamadas por Form
 
-export const onAdd = async (state, dispatch) => {
+export const onAdd = async (state, dispatch, idList) => {
   const request = {
     name: state.name,
     id: null,
     completed: false,
+    list_id: state.list_id,
   };
+  console.log("idList " + idList);
 
-  const response = await fetch(HOST_API + "/todo", {
+  const response = await fetch(HOST_API + "/" + `${idList}` + "/todo", {
     method: "POST",
     body: JSON.stringify(request),
     headers: {
       "Content-Type": "application/json",
     },
   });
+
   const todo = await response.json();
   dispatch({ type: "add-item", item: todo });
 };
@@ -25,6 +28,7 @@ export const onEdit = async (state, dispatch, item) => {
     name: state.name,
     id: item.id,
     isCompleted: item.isCompleted,
+    list_id: state.list_id,
   };
 
   const response = await fetch(HOST_API + "/todo", {

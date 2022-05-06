@@ -23,7 +23,7 @@ public class TodoController {
         return service.list();
     }
 
-    @PostMapping(value = "list/{list_id}/todo")
+    @PostMapping(value = "api/{list_id}/todo")
     public Todo save(@PathVariable(value = "list_id") Long listId, @RequestBody Todo todo) {
       TodoList list = this.todoListService.get(listId);
       todo.setList(list);

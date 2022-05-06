@@ -14,10 +14,6 @@ public class TodoList {
   private Long id;
   private String name;
 
-//  @OneToMany(targetEntity = Todo.class)
-//  @JoinColumn(name="list_id", nullable = false)
-//  private List<Todo> todos;
-
   public Long getId() {
     return id;
   }
