@@ -14,7 +14,7 @@ public class Todo {
   @Column(unique = true, nullable = false)
   private Long id;
   private String name;
-  private boolean completed;
+  private Boolean completed;
 
   @ManyToOne(optional = false)
   @JoinColumn(name = "list_id", nullable = false)
@@ -37,11 +37,11 @@ public class Todo {
     this.name = name;
   }
 
-  public boolean isCompleted() {
+  public Boolean isCompleted() {
     return completed;
   }
 
-  public void setCompleted(boolean completed) {
+  public void setCompleted(Boolean completed) {
     this.completed = completed;
   }
 

@@ -14,39 +14,49 @@ public class TodoController {
   @Autowired
   private TodoListService todoListService;
 
-    @Autowired
-    private TodoService service;
+  @Autowired
+  private TodoService service;
 
 
-    @GetMapping(value = "api/todos")
-    public Iterable<Todo> list(){
-        return service.list();
+
+  @GetMapping(value = "api/todos")
+  public Iterable<Todo> list() {
+    return service.list();
+  }
+
+  @PostMapping(value = "api/{list_id}/todo")
+  public Todo save(@PathVariable(value = "list_id") Long listId, @RequestBody Todo todo) {
+    TodoList list = this.todoListService.get(listId);
+    todo.setList(list);
+    return service.save(todo);
+  }
+
+  @PutMapping(value = "api/todo")
+  public Todo update(@RequestBody Todo todo) {
+
+    if (todo.getId() == null) {
+      throw new RuntimeException("No existe el id para actualizar");
+    }
+    Todo oldTodo = service.get(todo.getId());
+    if (todo.getName() != null){
+      oldTodo.setName(todo.getName());
     }
 
-    @PostMapping(value = "api/{list_id}/todo")
-    public Todo save(@PathVariable(value = "list_id") Long listId, @RequestBody Todo todo) {
-      TodoList list = this.todoListService.get(listId);
-      todo.setList(list);
-      return service.save(todo);
+    if (todo.isCompleted() != null){
+      oldTodo.setCompleted(todo.isCompleted());
     }
 
-    @PutMapping(value = "api/todo")
-    public Todo update(@RequestBody Todo todo){
+    return service.save(oldTodo);
+  }
 
-        if(todo.getId() != null){
-            return service.save(todo);
-        }
-        throw new RuntimeException("No existe el id para actualziar");
-    }
+  @DeleteMapping(value = "api/{id}/todo")
+  public void delete(@PathVariable("id") Long id) {
+    service.delete(id);
+  }
 
-    @DeleteMapping(value = "api/{id}/todo")
-    public void delete(@PathVariable("id")Long id){
-        service.delete(id);
-    }
-
-    @GetMapping(value = "api/{id}/todo")
-    public Todo get(@PathVariable("id") Long id){
-        return service.get(id);
-    }
+  @GetMapping(value = "api/{id}/todo")
+  public Todo get(@PathVariable("id") Long id) {
+    return service.get(id);
+  }
 
 }
