@@ -29,15 +29,18 @@ const ToDoList = () => {
               key={todo.id}
               className="col-lg-6 col-md-7 col-sm-12 mb-4 col-auto "
             >
-              <div className="container mt-3 ">
+              <div className="container mt-3">
                 <div className="card " style={{ minWidth: "400px" }}>
-                  <button onClick={() => onDeleteList(todo.id, dispatch)}>
-                    Eliminar
-                  </button>
-                  <h4 className="card-title text-center text-light bg-dark ">
-                    {" "}
+                  <h4 className="card-header text-light bg-dark d-flex justify-content-between align-items-center">
                     {todo.name}
+                    <button
+                      className="btn btn-outline-light btn-sm"
+                      onClick={() => onDeleteList(todo.id, dispatch)}
+                    >
+                      X
+                    </button>
                   </h4>
+                  <br />
                   <div className="container pb-3">
                     <InsertToDo idList={todo.id} />
                     <hr />

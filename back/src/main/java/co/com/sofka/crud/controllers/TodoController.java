@@ -18,7 +18,6 @@ public class TodoController {
   private TodoService service;
 
 
-
   @GetMapping(value = "api/todos")
   public Iterable<Todo> list() {
     return service.list();
@@ -38,11 +37,11 @@ public class TodoController {
       throw new RuntimeException("No existe el id para actualizar");
     }
     Todo oldTodo = service.get(todo.getId());
-    if (todo.getName() != null){
+    if (todo.getName() != null) {
       oldTodo.setName(todo.getName());
     }
 
-    if (todo.isCompleted() != null){
+    if (todo.isCompleted() != null) {
       oldTodo.setCompleted(todo.isCompleted());
     }
 

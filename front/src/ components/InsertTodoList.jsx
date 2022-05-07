@@ -28,7 +28,6 @@ const InsertTodoList = () => {
           await onAddList(state, dispatch);
           setState({ name: "" });
           formRef.current.reset();
-          console.log("estado " + state);
         }}
       >
         Nueva lista

@@ -1,17 +1,19 @@
 import { HOST_API } from "../const";
 
-//funciones llamadas por Form
-
 export const onAdd = async (state, dispatch, idList) => {
+  //al ingresar state.name == null valida si es nulo o undefined
+
+  if (state.name == null || state.name === "") {
+    return;
+  }
   const request = {
     name: state.name,
     id: null,
     completed: false,
     list_id: state.list_id,
   };
-  console.log("state " + state.name);
 
-  const response = await fetch(HOST_API + "/" + `${idList}` + "/todo", {
+  const response = await fetch(HOST_API + "/" + idList.toString() + "/todo", {
     method: "POST",
     body: JSON.stringify(request),
     headers: {
@@ -24,6 +26,9 @@ export const onAdd = async (state, dispatch, idList) => {
 };
 
 export const onEdit = async (state, dispatch, item) => {
+  if (state.name == null || state.name === "") {
+    return;
+  }
   const request = {
     name: state.name,
     id: item.id,
@@ -41,12 +46,3 @@ export const onEdit = async (state, dispatch, item) => {
   const todo = await response.json();
   dispatch({ type: "update-item", item: todo });
 };
-
-//funciones llamadas por
-
-// fetch({...})
-// .then((result) => algo1(result))
-
-// async
-// const result = await fetch({...})
-// algo1(result)

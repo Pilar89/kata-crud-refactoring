@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { onChange, onDelete, onEdit } from "../controller/controllerToDos";
 import { Store } from "../state/state";
 
@@ -57,6 +57,7 @@ const ToDos = ({ idList }) => {
                 </tr>
               );
             }
+            return null;
           })}
         </tbody>
       </table>
