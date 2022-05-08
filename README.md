@@ -1,49 +1,63 @@
-# [Problema]
 
-Pueden ver los siguientes videos para poder comprender la base del código fuente dentro de este repositorio. 
-
-https://www.youtube.com/watch?v=vqWvGgx_iXY&list=PL0IrPQPrkqoEUDXn1nsjzxSX2zflWtJW-
-
-## KATA Full Stack
+# KATA Full Stack
 
 En el siguiente proyecto se presenta algunos conceptos de Full Stack, trabajando con Spring Boot + ReactJS.
 
-### Caso de Uso
+## Demo
 
-Se tiene presente un formulario donde se registra unas tareas basadas en una lista por hacer. Esta lista se crea para poder tener una grupos de items donde se pueda gestionar un CRUD. Se tiene un diseño muy básico pero totalmente funcional. 
-
-#### Demo
-
-![alt text]( ./demo.gif "Demo funcional del ToDo")
- 
-### Instalación
-
-![alt text]( ./start.gif "Instalación y puesta en marcha")
-
-### Perspectiva Front-end
-Se tiene un archivo con toda la lógica, se presentan algunas malas prácticas en la codificación del mismo. Se debe refactorizar en donde se separe los componentes en archivos y se representen una mejor estructura. 
-
-Aplicar las mejores prácticas y buscar el mejor diseño para presentar los datos.
+![](front/public/Demo.gif)
 
 
-### Perspectiva Back-end
 
-Dentro del back-end no se tiene una base de datos basada en servidor. Se debe aplicar un buen diseño de modelo entidad relación y aplicar una base de datos como servidor, ejemplo MySQL. Representar un objeto de trasporte de datos (DTO) en vez de usar la misma entidad para responder. 
+#### Se tiene un formulario donde se registra una serie de actividades o To-Dos. Cada actividad tiene una lista de tareas necesarias para completar la actividad.
 
 ### Issues
 
-- Resolver el diseño gráfico
-- Separar bien los elementos gráficos como componentes, store, reducer y providers.
-- La base de datos debe esta en un servidor como MySQL.
-- Aplicar reglas para no guardar elementos vácios.
-- Validar carácteres y demás para guardar las entidades de los TO-DO.
-- Trabajar con un objeto de trasporte de datos o un objeto plano para representa los datos ante la API.
+#### 1) La base de datos debe estar en un servidor como MySQL.
+#### Solución: Se almacenan los datos del API en un servidor local MySQL, con ayuda de la herramienta de Spring Boot. En la base de datos se crea una tabla llamada todo(donde se almacenan las tareas de cada TO-Do) y otra tabla llamada todo_list (donde se almacenan todos los TO-DOs), y se aplica la relación @ManyToOne
 
-## Reto
 
-Hacer un fork en su propio namespace y presentar la solución más valida para ser discutida, argumentar los aspectos de mejora y aplicar algunas técnica de refactorización. Resolverlo de forma individual, aplicar los commit para cada paso que se realice en la refactorización. 
+![](front/public/mySql1.gif)
 
-Realizar la siguiente representación donde se tiene TO-Do List agripado en listas.
+#### 2) Aplicar reglas para no guardar elementos vacios.
 
-![alt text]( ./todo-list-kata.gif "Demo funcional del ToDo List")
+#### Solución: Al momento en que el usuario haga la petición para ingresar un nuevo registro, si el campo de entrada está vacio, no se guarda nungún cambio y el usuario recibe una alerta.
+
+![](front/public/ElementosVacios.gif)
+
+
+#### 3) Validar carácteres y demás para guardar las entidades de los TO-DO.
+
+![](front/public/entidades.gif)
+
+
+#### 4) Trabajar con objeto de trasporte de datos o objeto plano para representa los datos ante la API.
+
+#### Solución: En las siguientes peticiones del API se puede observar que se está trabajando con objetos planos:
+![](front/public/peticion.gif)
+
+
+#### 5) Resolver el diseño gráfico.
+#### Solución: Con ayuda de la herramienta bootstrap se agrega estilos a las tablas, formularios y modales, como se puede observar en el anterior demo.
+#### 6) Separar bien los elementos gráficos como componentes, store, reducer y providers.
+#### Solucion:  En la parte del front, se trató en la medida de lo posible dejar los componenetes en estado puro, es decir unicamente ingresar en ellos todo lo relacionado a las vistas, para esto se dividió el proyecto en 1)controladores donde se ingresa la lógica principal de la aplicación, 2)estado donde se almacenan los datos necesarios para que la aplicación funcione y finalmente los 3)controladores que son los que contienen las vistas.
+
+![](front/public/img.png)
+
+
+
+### Aclaraciones de uso:
+
+#### 1) Puedes usar el comando -> https://github.com/Pilar89/kata-crud-refactoring.git para clonar el proyecto en tu equipo.
+
+#### - Para la carpeta  front
+#### 1) Para instalar las dependencias, en el directorio del proyecto usa el comando -> npm install
+#### 2) Para correr el proyecto -> npm run
+#### 3) Abrir [http://localhost:3000] en el navegador, donde correrá el proyecto
+
+#### - Para la carpeta  front
+
+#### 1) Si se va a trabajar con MySQL local se recomienda ingresar a la carpeta src -> main -> resources -> application.properties y modificar el siguiente archivo según corresponda:
+
+![img.png](img.png)
 

@@ -1,8 +1,10 @@
 import React, { useContext, useRef, useState } from "react";
 import { onAddList } from "../controller/ControllerInsertToDoList";
 import { Store } from "../state/state";
+import AlertModal from "./AlertModal";
 
 const InsertTodoList = () => {
+  const [showModal, setShowModal] = useState(false);
   const formRef = useRef(null);
   const {
     dispatch,
@@ -25,6 +27,12 @@ const InsertTodoList = () => {
       <button
         onClick={async (event) => {
           event.preventDefault();
+          //al ingresar state.name == null valida si es nulo o undefined
+          if (state.name == null || state.name === "") {
+            setShowModal(true);
+            return;
+          }
+
           await onAddList(state, dispatch);
           setState({ name: "" });
           formRef.current.reset();
@@ -32,6 +40,12 @@ const InsertTodoList = () => {
       >
         Nueva lista
       </button>
+      <AlertModal
+        show={showModal}
+        onHandleClose={() => {
+          setShowModal(false);
+        }}
+      />
     </form>
   );
 };

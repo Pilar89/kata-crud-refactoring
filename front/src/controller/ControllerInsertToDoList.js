@@ -1,11 +1,6 @@
 import { HOST_API } from "../const";
 
 export const onAddList = async (state, dispatch) => {
-  //al ingresar state.name == null valida si es nulo o undefined
-
-  if (state.name == null || state.name === "") {
-    return;
-  }
   const request = {
     name: state.name,
     id: null,

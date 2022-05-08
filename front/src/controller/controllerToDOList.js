@@ -1,7 +1,5 @@
 import { HOST_API } from "../const";
 
-//funciones llamadas por el componenete tabla
-
 export async function initTodosList(dispatch) {
   const response = await fetch(HOST_API + "/list");
   const list = await response.json();

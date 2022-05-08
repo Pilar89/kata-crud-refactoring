@@ -2,8 +2,10 @@ import React, { useContext, useRef, useState } from "react";
 import { onAdd } from "../controller/controllerInsertToDo";
 import { onEdit } from "../controller/controllerInsertToDo";
 import { Store } from "../state/state";
+import AlertModal from "./AlertModal";
 
 const InsertToDo = ({ idList }) => {
+  const [showModal, setShowModal] = useState(false);
   const formRef = useRef(null);
   const {
     dispatch,
@@ -42,7 +44,11 @@ const InsertToDo = ({ idList }) => {
           <button
             onClick={async (event) => {
               event.preventDefault();
-
+              //al ingresar state.name == null valida si es nulo o undefined
+              if (state.name == null || state.name === "") {
+                setShowModal(true);
+                return;
+              }
               await onAdd(state, dispatch, idList);
 
               setState({ name: "" });
@@ -52,6 +58,12 @@ const InsertToDo = ({ idList }) => {
             Crear
           </button>
         )}
+        <AlertModal
+          show={showModal}
+          onHandleClose={() => {
+            setShowModal(false);
+          }}
+        />
       </form>
     </>
   );

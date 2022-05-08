@@ -1,7 +1,5 @@
 import { HOST_API } from "../const";
 
-//funciones llamadas por el componenete List
-
 export function initTodos(dispatch) {
   fetch(HOST_API + "/todos")
     .then((response) => response.json())
