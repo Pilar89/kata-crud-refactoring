@@ -3,6 +3,9 @@
 
 En el siguiente proyecto se presenta algunos conceptos de Full Stack, trabajando con Spring Boot + ReactJS.
 
+En el siguiente link se encuentra un video explicativo del proyecto:
+https://www.youtube.com/watch?v=x7eT6B0cVZc
+
 ## Demo
 
 ![](front/public/Demo.gif)
